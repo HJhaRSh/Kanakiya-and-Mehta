@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kanakiya & Mehta Associates — CA Firm Website
+
+A professional, responsive website for **Kanakiya & Mehta Associates**, Chartered Accountants (Est. 1989), with offices in Ahmednagar, Pune, and Mumbai.
+
+## Tech Stack
+
+- **Next.js 14** (App Router) with TypeScript
+- **Tailwind CSS** + CSS variables for theming
+- **Framer Motion** for animations
+- **Lucide React** for icons
+- **Google Fonts**: Playfair Display (headings), DM Sans (body)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact Form (Formspree)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Sign up at [formspree.io](https://formspree.io) and create a new form.
+2. In `components/contact/ContactForm.tsx`, set `FORMSPREE_ENDPOINT` to your form’s endpoint (e.g. `https://formspree.io/f/xxxxxxxx`).
+3. Submissions will appear in your Formspree dashboard and can be forwarded by email.
 
-## Learn More
+## Build & Deploy
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Deploy to **Vercel** by connecting the repo; no extra config needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+- `app/` — Pages (Home, About, Partners, Services, Experience, Contact)
+- `components/` — UI (Navbar, Footer, PageHero, etc.), home sections, partners, services, experience, contact
+- `data/` — Partners, services, audit experience, offices (all content)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Sticky navbar with mobile menu
+- Hero with stat counters and CTAs
+- Trust bar (marquee) with credentials
+- Services overview and detailed services page
+- Partners grid with bios
+- Experience / track record with filterable, sortable tables
+- Contact form with success/error states
+- Back-to-top button (after 300px scroll)
+- Per-page metadata for SEO

@@ -1,26 +1,313 @@
 @import "tailwindcss";
 
+/* Kanakiya & Mehta Associates — Brand Theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #0D1F3C;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --white: #FFFFFF;
+  --off-white: #F7F5F0;
+  --gray-100: #F0EEE9;
+  --gray-400: #9A9A9A;
+  --gray-700: #3D3D3D;
+  --success: #2D6A4F;
+  --background: var(--off-white);
+  --foreground: var(--gray-700);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-off-white: var(--off-white);
+  --color-gray-100: var(--gray-100);
+  --color-gray-400: var(--gray-400);
+  --color-gray-700: var(--gray-700);
+  --color-success: var(--success);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Grain texture for hero */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 
+html {
+  overflow-x: hidden;
+}
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Section header gold underline */
+.section-underline {
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin-top: 0.75rem;
+}
+
+/* Section separation — visible divider between sections */
+.section-separated {
+  border-bottom: 1px solid rgba(13, 31, 60, 0.08);
+  position: relative;
+}
+.section-separated::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+  border-radius: 2px;
+}
+.section-separated:last-of-type {
+  border-bottom: none;
+}
+.section-separated:last-of-type::after {
+  display: none;
+}
+
+/* ========== Rich section backgrounds (visible, not plain) ========== */
+
+/* Base mesh gradient — warm white/cream/gold tint, always visible */
+.section-bg-mesh {
+  background-color: #fdfcfa;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 20% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 60% at 80% 80%, rgba(13, 31, 60, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 100% at 50% 50%, rgba(247, 245, 240, 0.9) 0%, transparent 70%);
+}
+
+/* Visible dot pattern — navy + light gold dots */
+.section-bg-dots {
+  background-color: #fdfcfa;
+  background-image:
+    radial-gradient(circle, rgba(201, 168, 76, 0.12) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(13, 31, 60, 0.08) 1.2px, transparent 1.2px);
+  background-size: 32px 32px, 24px 24px;
+  background-position: 0 0, 12px 12px;
+  animation: section-dots-drift 40s linear infinite;
+}
+@keyframes section-dots-drift {
+  0% { background-position: 0 0, 12px 12px; }
+  100% { background-position: 32px 32px, 36px 36px; }
+}
+
+/* Ledger-style diagonal lines — subtle, professional */
+.section-bg-ledger {
+  background-color: #faf9f6;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 60px,
+    rgba(13, 31, 60, 0.03) 60px,
+    rgba(13, 31, 60, 0.03) 61px
+  );
+}
+
+/* Gradient that shifts (animated) */
+.section-bg-gradient {
+  background: linear-gradient(165deg, #fdfcfa 0%, #f7f5f0 40%, #faf4e8 70%, #fdfcfa 100%);
+  background-size: 200% 200%;
+  animation: section-gradient 22s ease-in-out infinite;
+}
+@keyframes section-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Shine overlay — more visible gold sweep */
+.section-bg-shine {
+  position: relative;
+  overflow: hidden;
+}
+.section-bg-shine::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(201, 168, 76, 0.06) 42%,
+    rgba(201, 168, 76, 0.14) 50%,
+    rgba(201, 168, 76, 0.06) 58%,
+    transparent 100%
+  );
+  animation: section-shine 16s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes section-shine {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(3%, 3%) rotate(1.5deg); }
+}
+
+/* Floating orbs — larger and more visible */
+.section-bg-float {
+  position: relative;
+}
+.section-bg-float::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.04) 40%, transparent 70%);
+  animation: float-orb 14s ease-in-out infinite;
+  pointer-events: none;
+}
+.section-bg-float::before {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 31, 60, 0.08) 0%, transparent 60%);
+  animation: float-orb 18s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-25px, -40px) scale(1.08); }
+}
+
+/* Gold shimmer (off-white) — stronger sweep */
+.section-bg-gold-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f7f5f0 0%, #faf6ef 50%, #f5f1e8 100%);
+}
+.section-bg-gold-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.08) 35%,
+    rgba(201, 168, 76, 0.16) 50%,
+    rgba(201, 168, 76, 0.08) 65%,
+    transparent 100%
+  );
+  animation: section-gold-sweep 12s ease-in-out infinite;
+  pointer-events: none;
+}
+.section-bg-gold-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 80px,
+    rgba(13, 31, 60, 0.02) 80px,
+    rgba(13, 31, 60, 0.02) 81px
+  );
+  pointer-events: none;
+}
+@keyframes section-gold-sweep {
+  0% { left: -70%; }
+  100% { left: 110%; }
+}
+
+/* White section with gentle pulse */
+.section-bg-pulse {
+  position: relative;
+  background-color: #fdfcfa;
+  animation: section-bg-pulse 10s ease-in-out infinite;
+}
+@keyframes section-bg-pulse {
+  0%, 100% { background-color: #fdfcfa; }
+  50% { background-color: #f8f6f1; }
+}
+
+/* Rich white — mesh + dots combined for services-style sections */
+.section-bg-rich {
+  background-color: #fdfcfa;
+  background-image:
+    radial-gradient(circle, rgba(201, 168, 76, 0.1) 1.2px, transparent 1.2px),
+    radial-gradient(ellipse 100% 60% at 0% 30%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 80% at 100% 70%, rgba(13, 31, 60, 0.04) 0%, transparent 50%);
+  background-size: 28px 28px, 100% 100%, 100% 100%;
+}
+
+/* Partner card flip */
+.perspective-\[1200px\] {
+  perspective: 1200px;
+}
+.perspective-\[1200px\] [style*="preserve-3d"] {
+  transform-style: preserve-3d;
+}
+.perspective-\[1200px\] [style*="backfaceVisibility"] {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* CTA / navy sections with gold accent — subtle glow pulse */
+.cta-gold-glow {
+  animation: cta-glow-pulse 6s ease-in-out infinite;
+}
+@keyframes cta-glow-pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.35; }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ========== Mobile / touch optimizations ========== */
+@layer utilities {
+  /* Safe area for notched devices */
+  .pb-safe {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+  .pr-safe {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  .pl-safe {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  /* Minimum touch target (44px) */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduce floating orbs on small screens for performance and layout */
+@media (max-width: 768px) {
+  .section-bg-float::after,
+  .section-bg-float::before {
+    width: 200px;
+    height: 200px;
+    opacity: 0.7;
+  }
 }
