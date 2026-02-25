@@ -13,12 +13,6 @@ export default function CTABanner() {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div
-        className="cta-gold-glow absolute inset-0"
-        style={{
-          background: "radial-gradient(circle at 30% 50%, var(--gold), transparent 50%)",
-        }}
-      />
       <div className="relative mx-auto max-w-[1200px] px-4 text-center md:px-6 lg:px-8">
         <motion.h2
           className="font-serif text-2xl font-semibold text-white sm:text-3xl md:text-4xl"
