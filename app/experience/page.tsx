@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import PageHero from "@/components/ui/PageHero";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -82,26 +82,54 @@ const dataMap = {
   government: governmentAudits,
 };
 
+const VALID_TAB_KEYS: AuditCategoryKey[] = [
+  "nationalized", "rrb", "dccb", "coop", "concurrent", "system", "government", "company",
+];
+
+function getTabFromHash(): AuditCategoryKey {
+  if (typeof window === "undefined") return "nationalized";
+  const hash = window.location.hash.slice(1).toLowerCase();
+  return VALID_TAB_KEYS.includes(hash as AuditCategoryKey) ? (hash as AuditCategoryKey) : "nationalized";
+}
+
 export default function ExperiencePage() {
-  const [activeTab, setActiveTab] = useState<AuditCategoryKey>("nationalized");
+  const [activeTab, setActiveTab] = useState<AuditCategoryKey>(() =>
+    typeof window !== "undefined" ? getTabFromHash() : "nationalized"
+  );
+
+  useEffect(() => {
+    setActiveTab(getTabFromHash());
+    const onHashChange = () => setActiveTab(getTabFromHash());
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  const handleTabChange = (key: AuditCategoryKey) => {
+    setActiveTab(key);
+    window.history.replaceState(null, "", `#${key}`);
+  };
 
   return (
     <>
       <PageHero title="Track Record" breadcrumbs={[{ label: "Experience" }]} />
       <AnimatedSection variant="float" bg="off-white">
-        <div className="relative z-10 mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
-          <motion.p
-            className="mx-auto max-w-2xl text-center text-gray-700"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Our detailed audit experience across nationalized banks, cooperative banks, government
-            departments, and corporates.
-          </motion.p>
+        <div id="experience-tabs" className="relative z-10 mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8 scroll-mt-24">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mb-3 h-0.5 w-12 mx-auto rounded-full" style={{ backgroundColor: "var(--gold)" }} />
+            <motion.p
+              className="text-base sm:text-lg leading-relaxed"
+              style={{ color: "var(--gray-700)" }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Our detailed audit experience across nationalized banks, cooperative banks, government
+              departments, and corporates.
+            </motion.p>
+          </div>
           <motion.div
-            className="mt-10 flex flex-wrap justify-center gap-2"
+            className="mt-10 sm:mt-12 flex flex-wrap justify-center gap-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -110,35 +138,38 @@ export default function ExperiencePage() {
               visible: { transition: { staggerChildren: 0.04, delayChildren: 0.15 } },
             }}
           >
-            {tabs.map((tab) => (
-              <motion.button
-                key={tab.key}
-                type="button"
-                onClick={() => setActiveTab(tab.key)}
-                variants={{
-                  hidden: { opacity: 0, y: 8 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
-                  },
-                }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                  activeTab === tab.key
-                    ? "text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-100"
-                }`}
-                style={
-                  activeTab === tab.key
-                    ? { backgroundColor: "var(--navy)" }
-                    : {}
-                }
-              >
-                {tab.label}
-              </motion.button>
-            ))}
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.key;
+              return (
+                <motion.button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => handleTabChange(tab.key)}
+                  variants={{
+                    hidden: { opacity: 0, y: 8 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
+                    },
+                  }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`rounded-full border-2 px-4 py-2.5 sm:px-5 sm:py-3 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--gold)] focus:ring-offset-2 ${
+                    isActive
+                      ? "border-[var(--navy)] text-white shadow-md"
+                      : "border-[var(--gold)]/50 bg-white hover:border-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--navy)] hover:shadow-[0_0_18px_rgba(201,168,76,0.4)]"
+                  }`}
+                  style={
+                    isActive
+                      ? { backgroundColor: "var(--navy)", color: "white" }
+                      : { color: "var(--navy)" }
+                  }
+                >
+                  {tab.label}
+                </motion.button>
+              );
+            })}
           </motion.div>
 
           <motion.div

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
+import NavySectionLines from "./NavySectionLines";
 
 interface PageHeroProps {
   title: string;
@@ -9,10 +10,11 @@ interface PageHeroProps {
 export default function PageHero({ title, breadcrumbs }: PageHeroProps) {
   return (
     <section
-      className="flex min-h-[35vh] sm:min-h-[40vh] flex-col justify-center px-4 py-12 sm:py-14 md:py-16 md:px-6 lg:px-8"
+      className="relative flex min-h-[35vh] sm:min-h-[40vh] flex-col justify-center overflow-hidden px-4 py-12 sm:py-14 md:py-16 md:px-6 lg:px-8"
       style={{ backgroundColor: "var(--navy)" }}
     >
-      <div className="mx-auto w-full max-w-[1200px]">
+      <NavySectionLines variant="dense" />
+      <div className="relative z-10 mx-auto w-full max-w-[1200px]">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
             <Link

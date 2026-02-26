@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import NavySectionLines from "./NavySectionLines";
 
 const items = [
   "ISO 9001:2008 Certified",
@@ -16,12 +17,13 @@ export default function TrustBar() {
 
   return (
     <section
-      className="overflow-hidden border-b border-[var(--gold)]/20 py-3 sm:py-4"
+      className="relative overflow-hidden border-b border-[var(--gold)]/20 py-3 sm:py-4"
       style={{ backgroundColor: "var(--navy)" }}
       aria-label="Credentials and certifications"
     >
+      <NavySectionLines />
       <motion.div
-        className="flex gap-6 sm:gap-12 whitespace-nowrap"
+        className="relative z-10 flex gap-6 sm:gap-12 whitespace-nowrap"
         style={{ width: "max-content" }}
         animate={{ x: ["0%", "-50%"] }}
         transition={{

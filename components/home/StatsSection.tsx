@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
+import NavySectionLines from "@/components/ui/NavySectionLines";
 
 const stats = [
   { value: 35, suffix: "+", label: "Years of Practice" },
@@ -34,13 +35,14 @@ export default function StatsSection() {
       className="relative overflow-hidden border-b border-white/10 py-12 sm:py-16 md:py-20"
       style={{ backgroundColor: "var(--navy)" }}
     >
+      <NavySectionLines />
       <div
         className="absolute inset-0 opacity-[0.15]"
         style={{
           background: "radial-gradient(ellipse 60% 40% at 50% 100%, var(--gold), transparent 70%)",
         }}
       />
-      <div className="relative mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
         <motion.h2
           className="text-center font-serif text-2xl font-semibold text-white sm:text-3xl md:text-4xl"
           initial={{ opacity: 0, y: 16 }}

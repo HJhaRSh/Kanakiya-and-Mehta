@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import NavySectionLines from "@/components/ui/NavySectionLines";
 import StatCounter from "./StatCounter";
 
 const stats = [
@@ -47,6 +48,7 @@ export default function HeroSection() {
         className="absolute inset-0 opacity-90"
         style={{ backgroundColor: "var(--navy)" }}
       />
+      <NavySectionLines />
       <div className="grain-overlay" aria-hidden />
       <div className="relative z-10 flex min-h-screen flex-col justify-center px-4 py-12 sm:py-16 md:py-20 md:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-[1200px] text-center">

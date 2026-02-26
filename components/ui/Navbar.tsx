@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Phone, X, Home, Users, Briefcase, BarChart3, Mail } from "lucide-react";
@@ -26,11 +27,16 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 md:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Home">
-          <div
-            className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full text-xs sm:text-sm font-semibold"
-            style={{ backgroundColor: "var(--gold)", color: "var(--navy)" }}
-          >
-            K&M
+          <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 flex items-center justify-center">
+            <Image
+              src="/ca-india-logo.png"
+              alt="CA India Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+              priority
+              unoptimized
+            />
           </div>
           <div className="min-w-0">
             <span className="font-serif text-sm font-semibold text-white sm:text-base md:text-lg truncate block">

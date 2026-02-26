@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Home, Users, Briefcase, BarChart3, Mail, MapPin, Phone, FileCheck, Link2 } from "lucide-react";
+import NavySectionLines from "./NavySectionLines";
 
 const quickLinks = [
   { href: "/", label: "Home", icon: Home },
@@ -22,18 +24,23 @@ const services = [
 export default function Footer() {
   return (
     <footer
-      className="border-t-2 pt-8 pb-6 sm:pt-10 md:pt-12"
+      className="relative overflow-hidden border-t-2 pt-8 pb-6 sm:pt-10 md:pt-12"
       style={{ borderColor: "var(--gold)", backgroundColor: "var(--navy)" }}
     >
-      <div className="mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
+      <NavySectionLines />
+      <div className="relative z-10 mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
         <div className="grid gap-8 sm:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <div
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
-                style={{ backgroundColor: "var(--gold)", color: "var(--navy)" }}
-              >
-                K&M
+              <div className="relative h-9 w-9 shrink-0 flex items-center justify-center">
+                <Image
+                  src="/ca-india-logo.png"
+                  alt="CA India Logo"
+                  width={36}
+                  height={36}
+                  className="object-contain"
+                  unoptimized
+                />
               </div>
               <span className="font-serif text-lg font-semibold text-white">
                 Kanakiya & Mehta Associates

@@ -27,7 +27,7 @@
   --color-gray-700: var(--gray-700);
   --color-success: var(--success);
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-serif: var(--font-heading), ui-serif, Georgia, serif;
 }
 
 /* Grain texture for hero */
@@ -56,28 +56,52 @@ body {
   margin-top: 0.75rem;
 }
 
-/* Section separation — visible divider between sections */
+/* Section separation — dynamic divider with gradient line + center ornament */
 .section-separated {
-  border-bottom: 1px solid rgba(13, 31, 60, 0.08);
   position: relative;
+  overflow: visible;
+}
+.section-separated::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(201, 168, 76, 0.25) 42%,
+    var(--gold) 50%,
+    rgba(201, 168, 76, 0.25) 58%,
+    transparent 65%,
+    transparent 100%
+  );
+  opacity: 0.9;
 }
 .section-separated::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.6;
-  border-radius: 2px;
+  transform: translate(-50%, 50%);
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  box-shadow:
+    0 0 0 2px var(--off-white),
+    0 0 12px rgba(201, 168, 76, 0.5);
+  animation: section-separator-pulse 3s ease-in-out infinite;
 }
-.section-separated:last-of-type {
-  border-bottom: none;
-}
+.section-separated:last-of-type::before,
 .section-separated:last-of-type::after {
   display: none;
+}
+@keyframes section-separator-pulse {
+  0%, 100% { opacity: 1; transform: translate(-50%, 50%) scale(1); box-shadow: 0 0 0 2px var(--off-white), 0 0 12px rgba(201, 168, 76, 0.5); }
+  50% { opacity: 0.85; transform: translate(-50%, 50%) scale(1.08); box-shadow: 0 0 0 2px var(--off-white), 0 0 18px rgba(201, 168, 76, 0.65); }
 }
 
 /* ========== Rich section backgrounds (visible, not plain) ========== */
@@ -277,6 +301,25 @@ body {
   50% { opacity: 0.35; }
 }
 
+/* Abstract lines from right — fading + draw animation for navy sections */
+@keyframes navy-lines-fade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.85; }
+}
+@keyframes navy-lines-draw {
+  0% { stroke-dashoffset: 1; }
+  45% { stroke-dashoffset: 0; }
+  55% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 1; }
+}
+.navy-lines-fade {
+  animation: navy-lines-fade 5s ease-in-out infinite;
+}
+.navy-line-draw {
+  stroke-dasharray: 1;
+  animation: navy-lines-draw 5s ease-in-out infinite;
+}
+
 /* Focus styles for accessibility */
 *:focus-visible {
   outline: 2px solid var(--gold);
@@ -302,12 +345,3 @@ body {
   }
 }
 
-/* Reduce floating orbs on small screens for performance and layout */
-@media (max-width: 768px) {
-  .section-bg-float::after,
-  .section-bg-float::before {
-    width: 200px;
-    height: 200px;
-    opacity: 0.7;
-  }
-}
