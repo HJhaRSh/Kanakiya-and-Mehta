@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 import {
   FileCheck,
   Landmark,
@@ -27,7 +28,7 @@ const serviceIds = [
   "corporatelaw",
 ] as const;
 
-const serviceMeta: Record<(typeof serviceIds)[number], { label: string; icon: React.ComponentType<{ className?: string }> }> = {
+const serviceMeta: Record<(typeof serviceIds)[number], { label: string; icon: LucideIcon }> = {
   statutory: { label: "Statutory Audits", icon: FileCheck },
   coop: { label: "Co-op Bank Audits", icon: Landmark },
   concurrent: { label: "Concurrent & System", icon: ShieldCheck },
