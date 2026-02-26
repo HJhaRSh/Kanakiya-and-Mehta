@@ -31,8 +31,11 @@ export const metadata: Metadata = {
     template: "%s | Kanakiya & Mehta Associates",
   },
   icons: {
-    icon: "/ca-india-logo.png",
-    apple: "/ca-india-logo.png",
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/favicon.png",
   },
   description:
     "Chartered Accountancy firm established in 1989. ISO 9001:2008 certified, CAG & RBI empanelled. Statutory audit, tax advisory, co-op bank audits, and corporate compliance across Maharashtra.",
