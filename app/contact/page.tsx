@@ -11,7 +11,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageHero title="Contact" breadcrumbs={[{ label: "Contact" }]} />
+      <PageHero
+        title="Contact"
+        breadcrumbs={[{ label: "Contact" }]}
+        className="min-h-[22vh] sm:min-h-[24vh] py-8 sm:py-10 md:py-12"
+      />
       <ContactPageContent />
     </>
   );

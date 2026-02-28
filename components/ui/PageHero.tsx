@@ -5,12 +5,13 @@ import NavySectionLines from "./NavySectionLines";
 interface PageHeroProps {
   title: string;
   breadcrumbs?: { label: string; href?: string }[];
+  className?: string;
 }
 
-export default function PageHero({ title, breadcrumbs }: PageHeroProps) {
+export default function PageHero({ title, breadcrumbs, className = "" }: PageHeroProps) {
   return (
     <section
-      className="relative flex min-h-[35vh] sm:min-h-[40vh] flex-col justify-center overflow-hidden px-4 py-12 sm:py-14 md:py-16 md:px-6 lg:px-8"
+      className={`relative flex min-h-[35vh] sm:min-h-[40vh] flex-col justify-center overflow-hidden px-4 py-12 sm:py-14 md:py-16 md:px-6 lg:px-8 ${className}`.trim()}
       style={{ backgroundColor: "var(--navy)" }}
     >
       <NavySectionLines variant="dense" />

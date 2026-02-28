@@ -42,7 +42,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="flex items-center gap-2 text-sm font-medium text-gray-700">
           <User className="h-4 w-4 text-[var(--gold)]" />
@@ -122,7 +122,7 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
-          rows={5}
+          rows={4}
           className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-[var(--gold)] focus:outline-none focus:ring-1 focus:ring-[var(--gold)]"
           placeholder="How can we help?"
         />

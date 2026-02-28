@@ -10,12 +10,12 @@ export default function OfficeCard({ office }: OfficeCardProps) {
 
   return (
     <div
-      className="group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
       style={{ borderLeftWidth: isHQ ? "4px" : "4px", borderLeftColor: isHQ ? "var(--gold)" : "rgba(13, 31, 60, 0.25)" }}
     >
       {/* Header strip — navy for HQ, subtle for Branch */}
       <div
-        className="shrink-0 px-4 py-3 sm:px-5 sm:py-3.5"
+        className="shrink-0 px-4 py-2.5 sm:px-5 sm:py-3"
         style={{ backgroundColor: isHQ ? "var(--navy)" : "var(--gray-100)" }}
       >
         <div className="flex items-center justify-between gap-2">
@@ -34,7 +34,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
         </div>
       </div>
 
-      <div className="flex min-h-0 flex-1 flex-col p-4 sm:p-5">
+      <div className="flex min-h-0 flex-1 flex-col p-3 sm:p-4">
         {office.contactPerson && (
           <p className="flex items-center gap-2 text-sm font-medium" style={{ color: "var(--navy)" }}>
             <User className="h-4 w-4 shrink-0 opacity-70" style={{ color: "var(--gold)" }} />
@@ -43,7 +43,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
         )}
 
         <div
-          className="mt-4 rounded-xl px-3 py-3 text-sm leading-relaxed"
+          className="mt-3 rounded-xl px-3 py-2.5 text-sm leading-relaxed"
           style={{ backgroundColor: "var(--off-white)", color: "var(--gray-700)" }}
         >
           <p className="flex items-start gap-2 break-words">
@@ -54,7 +54,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
           </p>
         </div>
 
-        <div className="mt-auto pt-4 space-y-2.5">
+        <div className="mt-auto pt-3 space-y-2">
           {/* Phone numbers on one line when both phone and mobile exist */}
           {(office.phone || office.mobile) && (
             <div className="flex items-center gap-2 text-sm font-medium" style={{ color: "var(--navy)" }}>
