@@ -13,9 +13,19 @@ export interface Office {
 
 export const offices: Office[] = [
   {
+    id: "mumbai",
+    name: "Mumbai",
+    type: "HQ",
+    address: "Flat No. 6, 2nd Floor, Parijat Co-op Scy., Jain Society Area, Near Gurunanak School, Sion (W)",
+    city: "Mumbai",
+    pin: "400022",
+    mobile: "09821434598 / 09423793105",
+    contactPerson: "CA Ajay P. Mehta",
+  },
+  {
     id: "ahmednagar",
     name: "Ahmednagar",
-    type: "HQ",
+    type: "Branch",
     address: "35, Varad Estate, Near Swami Samarth Mandir, Gaikwad Colony, Nagar Manmad Road",
     city: "Ahmednagar",
     pin: "414003",
@@ -32,15 +42,5 @@ export const offices: Office[] = [
     pin: "411037",
     mobile: "09823289222",
     contactPerson: "CA Nilamkumar Bhandari",
-  },
-  {
-    id: "mumbai",
-    name: "Mumbai",
-    type: "Branch",
-    address: "Flat No. 6, 2nd Floor, Parijat Co-op Scy., Jain Society Area, Near Gurunanak School, Sion (W)",
-    city: "Mumbai",
-    pin: "400022",
-    mobile: "09821434598 / 09423793105",
-    contactPerson: "CA Ajay P. Mehta",
   },
 ];

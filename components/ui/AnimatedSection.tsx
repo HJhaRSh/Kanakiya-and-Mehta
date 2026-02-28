@@ -50,7 +50,7 @@ export default function AnimatedSection({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4 }}
     >
-      {children}
+      <div className="relative z-10">{children}</div>
     </motion.section>
   );
 }

@@ -108,19 +108,19 @@ export default function Footer() {
             <p className="flex items-start gap-2 text-sm text-white/80 break-words">
               <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--gold)] flex-shrink-0" />
               <span>
-                35, Varad Estate, Near Swami Samarth Mandir,
+                Flat No. 6, 2nd Floor, Parijat Co-op Scy.,
                 <br />
-                Gaikwad Colony, Nagar Manmad Road,
+                Jain Society Area, Near Gurunanak School, Sion (W),
                 <br />
-                Ahmednagar - 414003
+                Mumbai - 400022
               </span>
             </p>
             <a
-              href="tel:02412340745"
+              href="tel:09821434598"
               className="mt-2 flex items-center gap-2 text-sm text-[var(--gold)] hover:underline"
             >
               <Phone className="h-3.5 w-3.5 shrink-0" />
-              0241-2340745 / 09422220591
+              09821434598 / 09423793105
             </a>
             <a
               href="mailto:cakm2007@gmail.com"

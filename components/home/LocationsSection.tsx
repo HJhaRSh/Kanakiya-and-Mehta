@@ -12,7 +12,7 @@ export default function LocationsSection() {
       <div className="relative z-10 mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
         <AnimatedSectionHeader
           title="Office Presence"
-          subtitle="Headquartered in Ahmednagar with branches in Pune and Mumbai."
+          subtitle="Headquartered in Mumbai with branches in Ahmednagar and Pune."
           centered
         />
         <motion.div
@@ -28,6 +28,7 @@ export default function LocationsSection() {
           {offices.map((office, i) => (
             <motion.div
               key={office.id}
+              className="h-full"
               variants={{
                 hidden: { opacity: 0, y: 24 },
                 visible: {

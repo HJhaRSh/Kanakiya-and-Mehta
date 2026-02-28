@@ -10,12 +10,12 @@ export default function OfficeCard({ office }: OfficeCardProps) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
       style={{ borderLeftWidth: isHQ ? "4px" : "4px", borderLeftColor: isHQ ? "var(--gold)" : "rgba(13, 31, 60, 0.25)" }}
     >
       {/* Header strip — navy for HQ, subtle for Branch */}
       <div
-        className="px-4 py-3 sm:px-5 sm:py-3.5"
+        className="shrink-0 px-4 py-3 sm:px-5 sm:py-3.5"
         style={{ backgroundColor: isHQ ? "var(--navy)" : "var(--gray-100)" }}
       >
         <div className="flex items-center justify-between gap-2">
@@ -34,7 +34,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
         </div>
       </div>
 
-      <div className="p-4 sm:p-5">
+      <div className="flex min-h-0 flex-1 flex-col p-4 sm:p-5">
         {office.contactPerson && (
           <p className="flex items-center gap-2 text-sm font-medium" style={{ color: "var(--navy)" }}>
             <User className="h-4 w-4 shrink-0 opacity-70" style={{ color: "var(--gold)" }} />
@@ -54,7 +54,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
           </p>
         </div>
 
-        <div className="mt-4 space-y-2.5">
+        <div className="mt-auto pt-4 space-y-2.5">
           {office.phone && (
             <a
               href={`tel:${office.phone.replace(/-/g, "")}`}

@@ -9,7 +9,7 @@ const items = [
   "Category I — RBI Audit Panel",
   "Category A — Co-op Panel",
   "ICAI Registered Firm No. 104702W",
-  "Offices in Ahmednagar | Pune | Mumbai",
+  "Offices in Mumbai | Ahmednagar | Pune",
 ];
 
 export default function TrustBar() {

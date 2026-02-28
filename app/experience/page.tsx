@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import PageHero from "@/components/ui/PageHero";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import AuditTable from "@/components/experience/AuditTable";
+import ExperienceBlock from "@/components/experience/ExperienceBlock";
 import {
   auditCategories,
   nationalizedBankAudits,
@@ -80,6 +80,17 @@ const dataMap = {
   concurrent: concurrentBankAudits,
   system: systemAudits,
   government: governmentAudits,
+};
+
+const categorySummaries: Record<AuditCategoryKey, string | undefined> = {
+  nationalized: "Statutory audits of PNB, SBI and other nationalized banks across Maharashtra.",
+  rrb: "Regional rural bank audits including high working-capital engagements.",
+  dccb: "District Central Co-operative Bank audits with experience up to ₹3,500 Crore working capital.",
+  coop: "Urban and other co-operative bank audits across Ahmednagar, Pune, Nasik and beyond.",
+  concurrent: "Concurrent and branch audits for multiple nationalized banks.",
+  system: "IT system audits and related assurance assignments for banks.",
+  government: "Government department audits including DRDA, MPLAD, MREGS and allied schemes.",
+  company: undefined,
 };
 
 const VALID_TAB_KEYS: AuditCategoryKey[] = [
@@ -180,21 +191,35 @@ export default function ExperiencePage() {
             transition={{ duration: 0.35 }}
           >
             {activeTab === "company" ? (
-              <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-                <h3 className="font-serif text-lg font-semibold" style={{ color: "var(--navy)" }}>
-                  {auditCategories.company.title}
-                </h3>
-                <ul className="mt-6 list-inside list-disc space-y-2 text-gray-700">
+              <div className="space-y-6">
+                <div>
+                  <h2 className="font-serif text-xl font-semibold sm:text-2xl" style={{ color: "var(--navy)" }}>
+                    {auditCategories.company.title}
+                  </h2>
+                  <p className="mt-2 text-sm text-gray-600 max-w-2xl">
+                    Insurance, manufacturing, utilities and private sector clients across the region.
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {companyAudits.map((name, i) => (
-                    <li key={i}>{name}</li>
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.03, duration: 0.25 }}
+                      className="rounded-xl border border-gray-200/90 bg-white px-4 py-3.5 shadow-sm transition-shadow hover:shadow-md"
+                    >
+                      <p className="font-medium text-[var(--navy)]">{name}</p>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
             ) : (
-              <AuditTable
+              <ExperienceBlock
                 title={auditCategories[activeTab].title}
                 rows={dataMap[activeTab] as import("@/data/auditExperience").AuditRow[]}
                 columns={tableConfig[activeTab]}
+                summary={categorySummaries[activeTab]}
               />
             )}
           </motion.div>

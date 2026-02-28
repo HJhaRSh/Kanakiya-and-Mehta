@@ -106,54 +106,98 @@ body {
 
 /* ========== Rich section backgrounds (visible, not plain) ========== */
 
-/* Base mesh gradient — warm white/cream/gold tint, always visible */
+/* Base mesh gradient — warm white/cream/gold tint + visible abstract motion */
 .section-bg-mesh {
-  background-color: #fdfcfa;
+  position: relative;
+  overflow: hidden;
+  background-color: #fdfcfa !important;
   background-image:
-    radial-gradient(ellipse 120% 80% at 20% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 100% 60% at 80% 80%, rgba(13, 31, 60, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 80% at 20% 20%, rgba(201, 168, 76, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 60% at 80% 80%, rgba(13, 31, 60, 0.06) 0%, transparent 50%),
     radial-gradient(ellipse 80% 100% at 50% 50%, rgba(247, 245, 240, 0.9) 0%, transparent 70%);
 }
+.section-bg-mesh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  top: -30%;
+  left: -15%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(ellipse 70% 80%, rgba(201, 168, 76, 0.18) 0%, transparent 60%);
+  animation: mesh-blob-1 12s ease-in-out infinite;
+  pointer-events: none;
+}
+.section-bg-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  bottom: -25%;
+  right: -15%;
+  width: 55%;
+  height: 65%;
+  background: radial-gradient(ellipse 65% 75%, rgba(13, 31, 60, 0.12) 0%, transparent 55%);
+  animation: mesh-blob-2 15s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes mesh-blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(15%, 12%) scale(1.2); opacity: 0.95; }
+}
+@keyframes mesh-blob-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-12%, -15%) scale(1.15); }
+}
 
-/* Visible dot pattern — navy + light gold dots */
+/* Visible dot pattern — navy + light gold dots with drift */
 .section-bg-dots {
-  background-color: #fdfcfa;
+  background-color: #fdfcfa !important;
   background-image:
-    radial-gradient(circle, rgba(201, 168, 76, 0.12) 1.5px, transparent 1.5px),
-    radial-gradient(circle, rgba(13, 31, 60, 0.08) 1.2px, transparent 1.2px);
+    radial-gradient(circle, rgba(201, 168, 76, 0.16) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(13, 31, 60, 0.1) 1.2px, transparent 1.2px);
   background-size: 32px 32px, 24px 24px;
   background-position: 0 0, 12px 12px;
-  animation: section-dots-drift 40s linear infinite;
+  animation: section-dots-drift 22s linear infinite;
 }
 @keyframes section-dots-drift {
   0% { background-position: 0 0, 12px 12px; }
   100% { background-position: 32px 32px, 36px 36px; }
 }
 
-/* Ledger-style diagonal lines — subtle, professional */
+/* Ledger-style diagonal lines — visible drift */
 .section-bg-ledger {
-  background-color: #faf9f6;
+  position: relative;
+  overflow: hidden;
+  background-color: #faf9f6 !important;
   background-image: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 60px,
-    rgba(13, 31, 60, 0.03) 60px,
-    rgba(13, 31, 60, 0.03) 61px
+    rgba(13, 31, 60, 0.06) 60px,
+    rgba(13, 31, 60, 0.06) 61px
   );
+  background-size: 85px 85px;
+  animation: ledger-drift 25s linear infinite;
+}
+@keyframes ledger-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 85px 85px; }
 }
 
-/* Gradient that shifts (animated) */
+/* Gradient that shifts (animated, visible) */
 .section-bg-gradient {
-  background: linear-gradient(165deg, #fdfcfa 0%, #f7f5f0 40%, #faf4e8 70%, #fdfcfa 100%);
+  background: linear-gradient(165deg, #fdfcfa 0%, #f7f5f0 35%, #faf4e8 65%, #f5f0e4 100%) !important;
   background-size: 200% 200%;
-  animation: section-gradient 22s ease-in-out infinite;
+  animation: section-gradient 14s ease-in-out infinite;
 }
 @keyframes section-gradient {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
 
-/* Shine overlay — more visible gold sweep */
+/* Shine overlay — visible gold sweep */
 .section-bg-shine {
   position: relative;
   overflow: hidden;
@@ -161,6 +205,7 @@ body {
 .section-bg-shine::before {
   content: "";
   position: absolute;
+  z-index: 0;
   top: -50%;
   left: -50%;
   width: 200%;
@@ -168,61 +213,65 @@ body {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(201, 168, 76, 0.06) 42%,
-    rgba(201, 168, 76, 0.14) 50%,
-    rgba(201, 168, 76, 0.06) 58%,
+    rgba(201, 168, 76, 0.1) 42%,
+    rgba(201, 168, 76, 0.22) 50%,
+    rgba(201, 168, 76, 0.1) 58%,
     transparent 100%
   );
-  animation: section-shine 16s ease-in-out infinite;
+  animation: section-shine 8s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes section-shine {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(3%, 3%) rotate(1.5deg); }
+  50% { transform: translate(5%, 5%) rotate(2deg); }
 }
 
-/* Floating orbs — larger and more visible */
+/* Floating orbs — cream/off-white with visible abstract motion */
 .section-bg-float {
   position: relative;
+  overflow: hidden;
 }
 .section-bg-float::after {
   content: "";
   position: absolute;
-  top: 5%;
-  right: 0;
-  width: 400px;
-  height: 400px;
+  z-index: 0;
+  top: 0;
+  right: -10%;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.04) 40%, transparent 70%);
-  animation: float-orb 14s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.2) 0%, rgba(201, 168, 76, 0.08) 35%, transparent 65%);
+  animation: float-orb 10s ease-in-out infinite;
   pointer-events: none;
 }
 .section-bg-float::before {
   content: "";
   position: absolute;
-  bottom: 10%;
-  left: -5%;
-  width: 320px;
-  height: 320px;
+  z-index: 0;
+  bottom: 0;
+  left: -8%;
+  width: 360px;
+  height: 360px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(13, 31, 60, 0.08) 0%, transparent 60%);
-  animation: float-orb 18s ease-in-out infinite reverse;
+  background: radial-gradient(circle, rgba(13, 31, 60, 0.14) 0%, transparent 55%);
+  animation: float-orb 12s ease-in-out infinite reverse;
   pointer-events: none;
 }
 @keyframes float-orb {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-25px, -40px) scale(1.08); }
+  50% { transform: translate(-35px, -50px) scale(1.12); }
 }
 
-/* Gold shimmer (off-white) — stronger sweep */
+/* Gold shimmer (off-white) — visible sweep + lines */
 .section-bg-gold-shimmer {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #f7f5f0 0%, #faf6ef 50%, #f5f1e8 100%);
+  background: linear-gradient(180deg, #f7f5f0 0%, #faf6ef 50%, #f5f1e8 100%) !important;
 }
 .section-bg-gold-shimmer::before {
   content: "";
   position: absolute;
+  z-index: 0;
   top: 0;
   left: -100%;
   width: 70%;
@@ -230,17 +279,18 @@ body {
   background: linear-gradient(
     105deg,
     transparent 0%,
-    rgba(201, 168, 76, 0.08) 35%,
-    rgba(201, 168, 76, 0.16) 50%,
-    rgba(201, 168, 76, 0.08) 65%,
+    rgba(201, 168, 76, 0.12) 35%,
+    rgba(201, 168, 76, 0.25) 50%,
+    rgba(201, 168, 76, 0.12) 65%,
     transparent 100%
   );
-  animation: section-gold-sweep 12s ease-in-out infinite;
+  animation: section-gold-sweep 7s ease-in-out infinite;
   pointer-events: none;
 }
 .section-bg-gold-shimmer::after {
   content: "";
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
   right: 0;
@@ -249,10 +299,16 @@ body {
     90deg,
     transparent 0,
     transparent 80px,
-    rgba(13, 31, 60, 0.02) 80px,
-    rgba(13, 31, 60, 0.02) 81px
+    rgba(13, 31, 60, 0.04) 80px,
+    rgba(13, 31, 60, 0.04) 81px
   );
+  background-size: 80px 100%;
+  animation: gold-shimmer-lines 35s linear infinite;
   pointer-events: none;
+}
+@keyframes gold-shimmer-lines {
+  0% { background-position: 0 0; }
+  100% { background-position: 80px 0; }
 }
 @keyframes section-gold-sweep {
   0% { left: -70%; }
@@ -270,14 +326,37 @@ body {
   50% { background-color: #f8f6f1; }
 }
 
-/* Rich white — mesh + dots combined for services-style sections */
+/* Rich white — mesh + dots + visible abstract motion */
 .section-bg-rich {
-  background-color: #fdfcfa;
+  position: relative;
+  overflow: hidden;
+  background-color: #fdfcfa !important;
   background-image:
-    radial-gradient(circle, rgba(201, 168, 76, 0.1) 1.2px, transparent 1.2px),
-    radial-gradient(ellipse 100% 60% at 0% 30%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 80% 80% at 100% 70%, rgba(13, 31, 60, 0.04) 0%, transparent 50%);
+    radial-gradient(circle, rgba(201, 168, 76, 0.14) 1.5px, transparent 1.5px),
+    radial-gradient(ellipse 100% 60% at 0% 30%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 80% at 100% 70%, rgba(13, 31, 60, 0.06) 0%, transparent 50%);
   background-size: 28px 28px, 100% 100%, 100% 100%;
+  animation: rich-dots-drift 28s linear infinite;
+}
+.section-bg-rich::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 5%;
+  right: 0;
+  width: 45%;
+  height: 55%;
+  background: radial-gradient(ellipse 60% 80%, rgba(201, 168, 76, 0.15) 0%, transparent 65%);
+  animation: rich-blob 10s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes rich-dots-drift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 28px 28px, 0 0, 0 0; }
+}
+@keyframes rich-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(-8%, -6%) scale(1.2); opacity: 0.9; }
 }
 
 /* Partner card flip */

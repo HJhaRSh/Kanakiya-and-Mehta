@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#1a2d4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#g)"/>
+  <g fill="none" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" opacity="0.8">
+    <path d="M80 80 L320 80 M80 120 L280 120"/>
+    <path d="M80 160 L200 160"/>
+  </g>
+  <text x="200" y="105" font-family="Georgia, serif" font-size="24" fill="rgba(201,168,76,0.9)" text-anchor="middle">News</text>
+</svg>

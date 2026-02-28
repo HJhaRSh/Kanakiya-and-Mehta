@@ -62,7 +62,7 @@ export default function AboutContent() {
               />
               <p className="leading-relaxed text-gray-700">
                 Kanakiya & Mehta Associates was established on 26th April 1989 as a partnership firm of
-                Chartered Accountants. From our headquarters in Ahmednagar and branches in Pune and Mumbai,
+                Chartered Accountants. From our headquarters in Mumbai and branches in Ahmednagar and Pune,
                 we have built a reputation for precision, integrity, and deep expertise in statutory audit,
                 tax advisory, and regulatory compliance.
               </p>
@@ -168,6 +168,7 @@ export default function AboutContent() {
             {offices.map((office, i) => (
               <motion.div
                 key={office.id}
+                className="h-full"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: {

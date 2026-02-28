@@ -5,7 +5,7 @@ import ContactPageContent from "@/components/contact/ContactPageContent";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Kanakiya & Mehta Associates — Head Office Ahmednagar, branches in Pune and Mumbai. Phone, email, and contact form.",
+    "Get in touch with Kanakiya & Mehta Associates — Head Office Mumbai, branches in Ahmednagar and Pune. Phone, email, and contact form.",
 };
 
 export default function ContactPage() {

@@ -1,6 +1,6 @@
 # Kanakiya & Mehta Associates — CA Firm Website
 
-A professional, responsive website for **Kanakiya & Mehta Associates**, Chartered Accountants (Est. 1989), with offices in Ahmednagar, Pune, and Mumbai.
+A professional, responsive website for **Kanakiya & Mehta Associates**, Chartered Accountants (Est. 1989), with offices in Mumbai, Ahmednagar, and Pune.
 
 ## Tech Stack
 

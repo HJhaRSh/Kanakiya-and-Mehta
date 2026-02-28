@@ -5,6 +5,7 @@ import ServicesSection from "@/components/home/ServicesSection";
 import StatsSection from "@/components/home/StatsSection";
 import PartnersTeaser from "@/components/home/PartnersTeaser";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
+import LatestUpdatesSection from "@/components/home/LatestUpdatesSection";
 import LocationsSection from "@/components/home/LocationsSection";
 import CTABanner from "@/components/home/CTABanner";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <StatsSection />
       <PartnersTeaser />
       <TestimonialsSection />
+      <LatestUpdatesSection />
       <LocationsSection />
       <CTABanner />
     </>

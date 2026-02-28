@@ -27,7 +27,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Kanakiya & Mehta Associates | Chartered Accountants | Ahmednagar, Pune, Mumbai",
+    default: "Kanakiya & Mehta Associates | Chartered Accountants | Mumbai, Ahmednagar, Pune",
     template: "%s | Kanakiya & Mehta Associates",
   },
   icons: {

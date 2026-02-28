@@ -32,7 +32,7 @@ export default function AboutSnapshot() {
               Kanakiya & Mehta Associates was founded in 1989 as a partnership firm of Chartered
               Accountants. We are ISO 9001:2008 certified and our eight partners bring a combined
               experience of over 200 years in statutory audit, tax advisory, and compliance. From
-              our headquarters in Ahmednagar and branches in Pune and Mumbai, we serve nationalized
+              our headquarters in Mumbai and branches in Ahmednagar and Pune, we serve nationalized
               banks, cooperative banks, government departments, and corporates across Maharashtra and
               beyond.
             </p>

@@ -31,7 +31,7 @@ export default function ContactPageContent() {
               transition={{ delay: 0.15, duration: 0.4 }}
             />
             <p className="mt-6 text-gray-700">
-              Reach out to our head office in Ahmednagar or our branches in Pune and Mumbai. We are
+              Reach out to our head office in Mumbai or our branches in Ahmednagar and Pune. We are
               happy to discuss your audit, tax, or compliance requirements.
             </p>
             <motion.div
@@ -47,6 +47,7 @@ export default function ContactPageContent() {
               {offices.map((office, i) => (
                 <motion.div
                   key={office.id}
+                  className="h-full"
                   variants={{
                     hidden: { opacity: 0, y: 16 },
                     visible: {
