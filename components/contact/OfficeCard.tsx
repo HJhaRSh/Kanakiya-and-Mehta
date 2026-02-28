@@ -10,7 +10,7 @@ export default function OfficeCard({ office }: OfficeCardProps) {
 
   return (
     <div
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
+      className="group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--navy)]/10 bg-white shadow-sm transition-all duration-300 hover:shadow-[0_8px_30px_rgba(13,31,60,0.12)] hover:border-[var(--gold)]/40"
       style={{ borderLeftWidth: isHQ ? "4px" : "4px", borderLeftColor: isHQ ? "var(--gold)" : "rgba(13, 31, 60, 0.25)" }}
     >
       {/* Header strip — navy for HQ, subtle for Branch */}
@@ -55,28 +55,27 @@ export default function OfficeCard({ office }: OfficeCardProps) {
         </div>
 
         <div className="mt-auto pt-4 space-y-2.5">
-          {office.phone && (
-            <a
-              href={`tel:${office.phone.replace(/-/g, "")}`}
-              className="flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
-              style={{ color: "var(--navy)" }}
-            >
+          {/* Phone numbers on one line when both phone and mobile exist */}
+          {(office.phone || office.mobile) && (
+            <div className="flex items-center gap-2 text-sm font-medium" style={{ color: "var(--navy)" }}>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "var(--gray-100)", color: "var(--gold)" }}>
                 <Phone className="h-3.5 w-3.5" />
               </span>
-              {office.phone}
-            </a>
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                {office.phone && (
+                  <a href={`tel:${office.phone.replace(/\D/g, "")}`} className="transition-colors hover:opacity-80">
+                    {office.phone}
+                  </a>
+                )}
+                {office.phone && office.mobile && <span className="text-gray-400">|</span>}
+                {office.mobile && (
+                  <a href={`tel:${office.mobile.replace(/\D/g, "")}`} className="transition-colors hover:opacity-80">
+                    {office.mobile}
+                  </a>
+                )}
+              </span>
+            </div>
           )}
-          <a
-            href={`tel:${office.mobile.replace(/\D/g, "")}`}
-            className="flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
-            style={{ color: "var(--navy)" }}
-          >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "var(--gray-100)", color: "var(--gold)" }}>
-              <Phone className="h-3.5 w-3.5" />
-            </span>
-            {office.mobile}
-          </a>
           {office.email && (
             <a
               href={`mailto:${office.email}`}

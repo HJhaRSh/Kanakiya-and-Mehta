@@ -32,6 +32,7 @@ export const offices: Office[] = [
     phone: "0241-2340745",
     mobile: "09422220591",
     email: "cakm2007@gmail.com",
+    contactPerson: "CA Sushil Jain",
   },
   {
     id: "pune",
